@@ -13,8 +13,8 @@ struct CreateItemView: View {
     let onAddTapped: (_ itemName: String, _ category: ItemCategory?) -> Void
     
     // MARK: - Private State
-    @State private var itemName: String = ""
-    @State private var selectedCategory: ItemCategory?
+    @Binding var itemName: String
+    @Binding var selectedCategory: ItemCategory?
     
     private let columns = [
         GridItem(.adaptive(minimum: 80), spacing: 12)
@@ -171,7 +171,7 @@ private extension CreateItemView {
 }
 
 #Preview {
-    CreateItemView { itemName, category in
+    CreateItemView(onAddTapped: { itemName, category in
         print("Added:", itemName, category ?? "nil")
-    }
+    }, itemName: .constant(""), selectedCategory: .constant(nil))
 }

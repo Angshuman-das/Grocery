@@ -23,9 +23,14 @@ struct GroceryListItemView: View {
                 }
                 Spacer()
             }
-            .padding(.horizontal)
         }
         .frame(maxWidth: .infinity)
+        .padding()
+        .background(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(style: .init(lineWidth: 1))
+        )
+        .contentShape(Rectangle()) 
     }
 }
 

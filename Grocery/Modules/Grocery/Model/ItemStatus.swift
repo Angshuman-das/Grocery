@@ -7,7 +7,18 @@
 
 import Foundation
 
-enum ItemStatus {
+enum ItemStatus: Codable {
     case pending
     case purchased
+}
+
+extension ItemStatus {
+    var nextStatus: ItemStatus {
+        switch self {
+        case .pending:
+            .purchased
+        case .purchased:
+            .pending
+        }
+    }
 }

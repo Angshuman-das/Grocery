@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ItemCategory: String, CaseIterable {
+enum ItemCategory: String, CaseIterable, Codable {
     case dairy = "Dairy"
     case vegetables = "Vegetables"
     case fruits = "Fruits"

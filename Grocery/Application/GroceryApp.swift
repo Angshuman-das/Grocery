@@ -6,12 +6,16 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct GroceryApp: App {
     var body: some Scene {
         WindowGroup {
-            GroceryView()
+            NavigationStack {
+                GroceryView()
+            }
         }
+        .modelContainer(for: GroceryItem.self)
     }
 }
