@@ -64,39 +64,21 @@ struct GroceryView<VM: GroceryViewModelProtocol>: View {
             .listStyle(.plain)
             .scrollContentBackground(.hidden)
             .background(Color.white)
-            .alert("Update Item",
-                   isPresented: Binding(
-                    get: { viewModel.editingItem != nil },
-                    set: { if !$0 { viewModel.editingItem = nil } }
-                   )
-            ) {
-                
-                TextField(
-                    "Item Name",
-                    text: Binding(
-                        get: { viewModel.editingItem?.name ?? "" },
-                        set: { viewModel.editingItem?.name = $0 }
-                    )
-                )
-                
-                Button("Cancel", role: .cancel) {
-                    viewModel.editingItem = nil
-                }
-                
-                Button("Update") {
-                    if let item = viewModel.editingItem {
-                        viewModel.updateItem(
-                            item,
-                            update: GroceryItemUpdate(
-                                name: item.name,
-                                status: nil
-                            )
+        }
+        .sheet(item: $viewModel.editingItem) { item in
+            EditItemView(
+                item: item,
+                onUpdate: { name, category in
+                    viewModel.updateItem(
+                        item,
+                        update: GroceryItemUpdate(
+                            name: name,
+                            status: nil,
+                            category: category
                         )
-                    }
-                    viewModel.editingItem = nil
+                    )
                 }
-            }
-
+            )
         }
     }
 }

@@ -10,4 +10,5 @@ import Foundation
 struct GroceryItemUpdate {
     var name: String?
     var status: ItemStatus?
+    var category: ItemCategory? 
 }
